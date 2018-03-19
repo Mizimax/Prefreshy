@@ -6,6 +6,7 @@
         {{ problem['.value'] }}
       </li>
     </ul>
+    <sui-button color="yellow" inverted>ทดสอบ</sui-button>
   </div>
 </template>
 
