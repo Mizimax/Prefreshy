@@ -1,21 +1,17 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <ul>
-      <li v-for="problem of problems">
-        {{ problem['.value'] }}
-      </li>
-    </ul>
-    <sui-button color="yellow" inverted>ทดสอบ</sui-button>
+  <div class="container content">
+  <ProblemCard v-bind:problems="problems"></ProblemCard>
   </div>
 </template>
 
 <script>
 
 import { db } from '../firebase'
+import ProblemCard from '../components/ProblemCard'
 
 export default {
   name: "HelloWorld",
+  components: {ProblemCard: ProblemCard},
   data() {
     return {
       msg: "Problem",
@@ -35,5 +31,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+
 
 </style>

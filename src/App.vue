@@ -64,9 +64,23 @@ a {
   transform: translate(-50%,-50%);
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .container {
   margin: 0 auto;
   max-width: 1024px;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    margin: 0 20px;
+  }
+}
+
+.content {
+  margin-top: 10px;
 }
 
 </style>

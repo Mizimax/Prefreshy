@@ -13,9 +13,7 @@
                     <li>Submission</li>
                 </router-link>
                 <li class="center">Prefreshy</li>
-                <router-link to="/login">
-                    <li class="right">Login</li>
-                </router-link>
+                <li class="right pointer">Login</li>
             </ul>
         </div>
     </nav>
@@ -41,7 +39,6 @@ export default {
 }
 
 #Menu ul {
-    line-height: 50px;
     margin: 0;
     padding: 0;
 }
@@ -49,19 +46,38 @@ export default {
 #Menu ul li {
     float: left;
     list-style: none;
-    padding: 0 20px;
+    position: relative;
+    margin: 0 15px;
+    padding: 15.5px 0px;
+    font-weight: bold;
+    transition: .5s all;
+}
+
+#Menu ul li:not(.right):hover {
+    color: white;
+}
+
+#Menu ul li:not(.right):hover:after {
+    opacity: 1;
+    width: 100%;
 }
 
 #Menu a {
-  color: #D5D8CC;
+  color: #444;
 }
 
 #Menu .right {
     float: right;
+    color: #c58ec3;
+    padding: 6px 15px;
+    margin-top: 10px;
+    background: #fff;
+    border-radius: 20px;
 }
 
 #Menu .center {
     font-size: 20px;
+    font-weight: bold;
     color: #fff;
     position: absolute;
     left: 50%;
@@ -70,9 +86,33 @@ export default {
 
 #Menu .router-link-active,
 #Menu .router-link-exact-active {
-  color: #FFF;
+  color: white;
   cursor: pointer;
   font-weight: bold;
 }
+
+#Menu .router-link-active li:not(.right), #Menu ul li:not(.right):hover {
+    padding: 15.5px 0px;
+    margin-top: 0;
+}
+
+#Menu ul li:after {
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    top: 35px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: white;
+    transition: .5s all;
+}
+
+#Menu .router-link-active li:after {
+    opacity: 1;
+    width: 100%;
+}
+
+
 
 </style>
