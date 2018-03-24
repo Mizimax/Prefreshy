@@ -18,15 +18,9 @@ export default {
       problems: {}
     };
   },
-  // firebase: {
-  //   problems: {
-  //     source: db.ref('problems'),
-  //     readyCallback: function() {
-  //         console.log(this.problems);
-  //         this.$Progress.finish();
-  //     }
-  //   }
-  // },
+  mounted () {
+    this.$Progress.finish()
+  },
   beforeRouteEnter (to, from, next) {
     db.ref('problems').on('value',(snapshot)=> {
       next(vm => vm.problems = snapshot.val());
