@@ -12,8 +12,8 @@ import 'semantic-ui-css/semantic.min.css';
 Vue.config.productionTip = false;
 
 const options = {
-  color: '#fff',
-  thickness: '2px'
+  color: '#FF657C',
+  thickness: '3px'
 }
 
 Vue.use(SuiVue);

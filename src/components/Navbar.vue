@@ -36,6 +36,7 @@ export default {
 #Menu {
     height: 50px;
     background-color: #c58ec3;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
 }
 
 #Menu ul {
@@ -85,9 +86,9 @@ export default {
     margin: 0;
 }
 
-#Menu .router-link-active,
-#Menu .router-link-exact-active {
-  color: white;
+#Menu .router-link-active li,
+#Menu .router-link-exact-active li {
+  color: white !important;
   cursor: pointer;
   font-weight: bold;
 }

@@ -11,6 +11,9 @@ export default {
     return {
       msg: "Prefreshy"
     };
+  },
+  mounted () {
+    this.$Progress.finish()
   }
 };
 </script>

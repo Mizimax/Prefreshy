@@ -1,5 +1,5 @@
 <template>
-  <div>Sidebar</div>
+  <div class="sidebar">Sidebar</div>
 </template>
 
 <script>
@@ -13,6 +13,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-/* Menu */
+.sidebar {
+  position: fixed;
+}
+
 
 </style>

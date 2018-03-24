@@ -11,6 +11,9 @@ export default {
     return {
       msg: "Submission"
     };
+  },
+  mounted () {
+    this.$Progress.finish()
   }
 };
 </script>
