@@ -82,6 +82,7 @@ export default {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    margin: 0;
 }
 
 #Menu .router-link-active,
@@ -100,7 +101,7 @@ export default {
     opacity: 0;
     content: " ";
     position: absolute;
-    top: 35px;
+    top: 37px;
     left: 0;
     width: 0;
     height: 4px;

@@ -1,7 +1,8 @@
 <template>
     <sui-card class="problem-card">
-        <div v-for="problem of problems">
-        {{ problem['.value'] }}
+        <h3 style="text-align:center">{{ problems['title'] }}</h3>
+        <div v-for="problem of problems['data']">
+        {{ problem }}
         <sui-divider />
         </div>
     </sui-card>
@@ -11,6 +12,7 @@
 export default {
   name: "ProblemCard",
   props: ['problems']
+  
 };
 </script>
 

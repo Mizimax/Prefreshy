@@ -3,6 +3,7 @@
 import Vue from "vue";
 import VueFire from "vuefire";
 import SuiVue from 'semantic-ui-vue';
+import VueProgressBar from 'vue-progressbar'
 import store from "./store/";
 import App from "./App";
 import router from "./router";
@@ -10,7 +11,13 @@ import 'semantic-ui-css/semantic.min.css';
 
 Vue.config.productionTip = false;
 
+const options = {
+  color: '#fff',
+  thickness: '2px'
+}
+
 Vue.use(SuiVue);
+Vue.use(VueProgressBar, options);
 Vue.use(VueFire);
 
 /* eslint-disable no-new */

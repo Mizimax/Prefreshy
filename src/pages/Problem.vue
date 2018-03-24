@@ -1,6 +1,6 @@
 <template>
   <div class="container content">
-  <ProblemCard v-bind:problems="problems"></ProblemCard>
+    <ProblemCard v-for="problem of problems" v-bind:problems="problem"></ProblemCard>
   </div>
 </template>
 
@@ -18,13 +18,19 @@ export default {
       problems: {}
     };
   },
-  firebase: {
-    problems: {
-      source: db.ref('Problems'),
-      readyCallback: function() {
-          console.log(this.problems);
-      }
-    }
+  // firebase: {
+  //   problems: {
+  //     source: db.ref('problems'),
+  //     readyCallback: function() {
+  //         console.log(this.problems);
+  //         this.$Progress.finish();
+  //     }
+  //   }
+  // },
+  beforeRouteEnter (to, from, next) {
+    db.ref('problems').on('value',(snapshot)=> {
+      next(vm => vm.problems = snapshot.val());
+    });
   }
 };
 </script>

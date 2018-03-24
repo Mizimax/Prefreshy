@@ -1,16 +1,18 @@
 <template>
-  <div>Loading...</div>
+  <div>Sidebar</div>
 </template>
 
 <script>
 
 export default {
-  name: "Loading"
+  name: "Sidebar"
 };
 
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+/* Menu */
 
 </style>
