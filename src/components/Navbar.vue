@@ -13,7 +13,9 @@
                     <li>Submission</li>
                 </router-link>
                 <li class="center">Prefreshy</li>
+                <router-link to="/login">
                 <li class="right pointer">Login</li>
+                </router-link>
             </ul>
         </div>
     </nav>
@@ -86,8 +88,8 @@ export default {
     margin: 0;
 }
 
-#Menu .router-link-active li,
-#Menu .router-link-exact-active li {
+#Menu .router-link-active li:not(.right),
+#Menu .router-link-exact-active li:not(.right) {
   color: white !important;
   cursor: pointer;
   font-weight: bold;
@@ -110,7 +112,7 @@ export default {
     transition: .5s all;
 }
 
-#Menu .router-link-active li:after {
+#Menu .router-link-active li:not(.right):after, #Menu .router-link-exact-active li:not(.right):after {
     opacity: 1;
     width: 100%;
 }

@@ -11,6 +11,9 @@ export default {
     return {
       msg: "Login"
     };
+  },
+  mounted () {
+    this.$Progress.finish()
   }
 };
 </script>
