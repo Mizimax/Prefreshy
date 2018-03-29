@@ -53,6 +53,7 @@ export default {
     margin: 0 15px;
     padding: 15.5px 0px;
     font-weight: bold;
+    color: white;
     transition: .5s all;
 }
 
@@ -90,7 +91,7 @@ export default {
 
 #Menu .router-link-active li:not(.right),
 #Menu .router-link-exact-active li:not(.right) {
-  color: white !important;
+  color: #ffa7b3 !important;
   cursor: pointer;
   font-weight: bold;
 }
@@ -108,7 +109,7 @@ export default {
     left: 0;
     width: 0;
     height: 4px;
-    background: white;
+    background: #ffa7b3;
     transition: .5s all;
 }
 

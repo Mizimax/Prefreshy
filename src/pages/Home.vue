@@ -1,6 +1,8 @@
 <template>
   <div class="container content">
-    <h1>{{ msg }}</h1>
+    <sui-card class="myCard">
+      <h1>{{ msg }}</h1>
+    </sui-card>
   </div>
 </template>
 
@@ -9,7 +11,7 @@ export default {
   name: "Home",
   data() {
     return {
-      msg: "Prefreshy"
+      msg: "Scoreboard"
     };
   },
   mounted () {
@@ -20,6 +22,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 
 </style>

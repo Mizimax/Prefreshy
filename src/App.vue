@@ -52,10 +52,6 @@ body {
   background-color: #D5D8CC;
 }
 
-a {
-  color: #c58ec3;
-}
-
 .bg.primary a {
   color: #D5D8CC;
 }
@@ -96,7 +92,6 @@ a {
 
 .container {
   margin: 0 auto;
-  width: 100%;
   max-width: 1024px;
 }
 
@@ -108,6 +103,11 @@ a {
 
 .content {
   margin-top: 15px;
+}
+
+.myCard {
+  width: 100% !important;
+  padding: 20px !important;
 }
 
 </style>
