@@ -1,7 +1,13 @@
 <template>
-  <div class="container content">
-    <ProblemCard v-for="problem of problems" v-bind:problems="problem"></ProblemCard>
-  </div>
+  <sui-container class="content">
+    <sui-grid :stackable="true">
+      <sui-grid-row :columns="2">
+        <sui-grid-column class="card-margin" v-for="problem of problems">
+          <ProblemCard v-bind:problems="problem"></ProblemCard>
+        </sui-grid-column>
+      </sui-grid-row>
+    </sui-grid>
+  </sui-container>
 </template>
 
 <script>
@@ -32,6 +38,9 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+.card-margin {
+  margin-bottom: 20px !important;
+}
 
 
 </style>

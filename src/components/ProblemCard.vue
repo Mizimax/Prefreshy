@@ -1,17 +1,49 @@
 <template>
+  <div>
     <sui-card class="problem-card">
-        <h3 style="text-align:center">{{ problems['title'] }}</h3>
-        <div v-for="problem of problems['data']">
-        {{ problem }}
-        <sui-divider />
+        <div class="space-header"></div>
+        <sui-card-header class="bold">
+          {{ problems['title'] }}
+        </sui-card-header>
+        <div v-for="problem, index in problems['data']">
+          <div class="pointer card-content">
+            <div class="left font-small color primary">
+              {{ problem }}
+            </div>
+            <div class="right">
+              <sui-button v-if="problemStatus === 0" color="pink" class="font-smaller2" inverted>
+                <sui-icon name="hand point left" />
+                Practice
+              </sui-button>
+              <sui-label v-if="problemStatus === 1" color="blue">
+                <sui-icon name="notched circle" loading />
+                Pending
+              </sui-label>
+              <sui-label v-if="problemStatus === 2" color="green">
+                <sui-icon name="check circle" />
+                Complete
+              </sui-label>
+              <sui-label v-if="problemStatus === 3" color="red">
+                <sui-icon name="times circle" />
+                Incorrect
+              </sui-label>
+            </div>
+          </div>
+          <sui-divider v-if="index > 0" />
         </div>
     </sui-card>
+  </div>
 </template>
 
 <script>
 export default {
   name: "ProblemCard",
-  props: ['problems']
+  props: ['problems'],
+  data() {
+    return {
+      problemStatus: 0
+    }
+  }
   
 };
 </script>
@@ -22,6 +54,68 @@ export default {
 .problem-card {
   width: 100%;
   padding: 20px;
+}
+
+.header {
+  color: #c58ec3;
+}
+
+div.left {
+  float: left;
+}
+
+div.right {
+  float: right;
+}
+
+.card-margin .divider {
+  border-color: black;
+}
+
+.space-header {
+  height: 40px;
+}
+
+.header {
+  position: absolute;
+  left: 50%;
+  top: 25px;
+  font-size: 16px;
+  font-weight: lighter;
+  transform: translateX(-50%);
+}
+
+.problem-card:hover .header:after {
+  opacity: 1;
+  width: 100%;
+}
+
+.card-content {
+  transition: .2s all;
+}
+
+.card-content > div.right { 
+  padding: 12px 20px;
+}
+
+.card-content > div.left { 
+  padding: 20.5px 20px;
+}
+
+.header:after {
+    opacity: 0;
+    content: " ";
+    position: absolute;
+    top: 23px;
+    left: 0;
+    width: 0;
+    height: 4px;
+    background: #ffa7b3;
+    transition: .5s all;
+}
+
+.divider {
+  margin: 0 !important;
 }
 
 </style>

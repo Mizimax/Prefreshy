@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <nav id="Menu">
-        <div class="container">
+        <sui-container>
             <ul class="relative">
                 <router-link to="/" exact>
                     <li>Home</li>
@@ -17,7 +17,7 @@
                 <li class="right pointer">Login</li>
                 </router-link>
             </ul>
-        </div>
+        </sui-container>
     </nav>
   </div>
 </template>
@@ -38,7 +38,6 @@ export default {
 #Menu {
     height: 50px;
     background-color: #c58ec3;
-    box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
 }
 
 #Menu ul {

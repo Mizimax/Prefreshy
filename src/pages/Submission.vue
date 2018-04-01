@@ -1,7 +1,7 @@
 <template>
-  <div class="container content">
+  <sui-container class="content">
     <h1>{{ msg }}</h1>
-  </div>
+  </sui-container>
 </template>
 
 <script>
