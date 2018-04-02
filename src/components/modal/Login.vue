@@ -6,14 +6,11 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "Login",
   data() {
     return {
       msg: "Login"
     };
-  },
-  mounted () {
-    this.$Progress.finish()
   }
 };
 </script>

@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <Sidebar></Sidebar>
     <router-view></router-view>
-    <Modal></Modal>
+    <Modal :size="size" :type="type" :title="title" :description="description"></Modal>
     <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
@@ -12,7 +12,7 @@
 
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
-import Modal from './components/Modal'
+import Modal from './components/modal/Modal'
 
 export default {
   name: "App",
@@ -20,6 +20,14 @@ export default {
     Navbar,
     Sidebar,
     Modal
+  },
+  data () {
+    return {
+      size: "standart",
+      type: "problem",
+      title: "",
+      description: ""
+    }
   },
   created () {
     //  [App.vue specific] When App.vue is first loaded start the progress bar
@@ -103,6 +111,10 @@ body {
 
 .bold {
   font-weight: bold !important;
+}
+
+.hide {
+  display: none;
 }
 
 .container {
