@@ -1,12 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-  </div>
+  <sui-modal v-model="open" :size="size">
+    555
+  </sui-modal>
 </template>
 
 <script>
 export default {
   name: "Login",
+  props: ["open", "size"],
   data() {
     return {
       msg: "Login"

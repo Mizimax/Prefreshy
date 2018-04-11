@@ -3,12 +3,12 @@
     <sui-card class="problem-card">
         <div class="space-header"></div>
         <sui-card-header class="bold">
-          {{ problems['title'] }}
+          {{ problems['level'] }}
         </sui-card-header>
         <div v-for="problem, index in problems['data']">
           <div class="pointer card-content">
             <div class="left font-small color primary">
-              {{ problem }}
+              {{ problem['title'] }}
             </div>
             <div class="right">
               <sui-button v-if="problemStatus === 0" color="pink" class="font-smaller2" inverted>

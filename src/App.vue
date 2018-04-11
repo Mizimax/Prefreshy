@@ -3,7 +3,7 @@
     <Navbar></Navbar>
     <Sidebar></Sidebar>
     <router-view></router-view>
-    <Modal :size="size" :type="type" :title="title" :description="description"></Modal>
+    <Modal></Modal>
     <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
@@ -23,10 +23,7 @@ export default {
   },
   data () {
     return {
-      size: "standart",
-      type: "problem",
-      title: "",
-      description: ""
+
     }
   },
   created () {
@@ -111,6 +108,10 @@ body {
 
 .bold {
   font-weight: bold !important;
+}
+
+.text-wrap {
+  word-break: break-all;
 }
 
 .hide {
