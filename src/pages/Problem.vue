@@ -2,8 +2,8 @@
   <sui-container class="content">
     <sui-grid :stackable="true">
       <sui-grid-row :columns="2">
-        <sui-grid-column class="card-margin" v-for="problem of problems">
-          <ProblemCard v-bind:problems="problem"></ProblemCard>
+        <sui-grid-column class="card-margin" v-for="problem, index in problems">
+          <ProblemCard v-bind:problems="problem" :levelIndex="index"></ProblemCard>
         </sui-grid-column>
       </sui-grid-row>
     </sui-grid>

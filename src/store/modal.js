@@ -1,6 +1,6 @@
 const state = {
-    open: true,
-    modalType: 'problem',
+    open: false,
+    modalType: '',
     problem: {
         level: 0,
         id: 0
@@ -9,14 +9,11 @@ const state = {
 
 const mutations = {
 
-    setModalOpen (state) {
-      state.open = true
-    },
-    setModalClose (state) {
-      state.open = false
+    setModalToggle (state) {
+      state.open = !state.open
     },
     setModalType (state, payload) {
-      state.type = payload.modalType
+      state.modalType = payload.type
     },
     setProblem (state, payload) {
       state.problem.id = payload.id
@@ -25,14 +22,19 @@ const mutations = {
 }
 
 const actions = {
-    setModalOpen: ({ commit }) => commit('setModalOpen'),
-    setModalClose: ({ commit }) => commit('setModalClose'),
-    setModalType: ({ commit, payload }) => commit('setModalType', payload),
-    setProblem: ({ commit, payload }) => commit('setProblem', payload)
+    setModalToggle: ({ commit }) => commit('setModalToggle'),
+    setModalType: ({ commit }, payload) => commit('setModalType', payload),
+    setProblem: ({ commit }, payload) => commit('setProblem', payload),
+
+    setModalProblem: ({ dispatch, commit }, payload) => {
+        dispatch('setModalToggle')
+        dispatch('setModalType', payload.type)
+        commit('setProblem', payload.problem)
+    }
 }
 
 const getters = {
-    getModalOpen: state => state.open,
+    getModalStatus: state => state.open,
     getModalType: state => state.modalType,
     getProblem: state => state.problem
 }

@@ -11,7 +11,7 @@
               {{ problem['title'] }}
             </div>
             <div class="right">
-              <sui-button v-if="problemStatus === 0" color="pink" class="font-smaller2" inverted>
+              <sui-button v-if="problemStatus === 0" @click="setModalProblem({ type: {type: 'problem'} , problem: { level: levelIndex, id: index } })" color="pink" style="font-size: 13px" inverted>
                 <sui-icon name="hand point left" />
                 Practice
               </sui-button>
@@ -36,13 +36,20 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: "ProblemCard",
-  props: ['problems'],
+  props: ['problems', 'levelIndex'],
   data() {
     return {
       problemStatus: 0
     }
+  },
+  methods: {
+    ...mapActions([
+      'setModalProblem'
+    ])
   }
   
 };
@@ -99,7 +106,7 @@ div.right {
 }
 
 .card-content > div.left { 
-  padding: 20.5px 20px;
+  padding: 19px 20px;
 }
 
 .header:after {

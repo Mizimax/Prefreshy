@@ -1,8 +1,8 @@
 <template>
   <div class="modal">
-      <ProblemModal v-if="type === 'problem'">
+      <ProblemModal>
       </ProblemModal>
-      <Login v-if="type === 'login'"></Login>
+      <Login></Login>
   </div>
 </template>
 
@@ -13,11 +13,6 @@ import Login from './Login';
 
 export default {
   name: "Modal",
-  computed: {
-    ...mapGetters({
-      type: 'getModalType'
-    })
-  },
   components: {
     ProblemModal,
     Login

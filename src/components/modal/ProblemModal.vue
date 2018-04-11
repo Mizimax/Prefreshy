@@ -86,34 +86,25 @@ export default {
         }
     };
   },
-  firebase: function(){
-    let self = this;
-    return {
-      problem_detail: {
-        source: db.ref('problems/' + self.problem.level + '/data/' + self.problem.id),
-        asObject: true
-      }
-    }
-  },
   computed: {
-    open: function() {
-      return {
+    open: {
         get: function () {
           return this.opened
         },
         set: function () {
-          this.$store.dispatch('setModalOpen')
+          this.$store.dispatch('setModalToggle')
         }
-      }
     },
     ...mapGetters({
-      opened: 'getModalOpen',
+      opened: 'getModalStatus',
       problem: 'getProblem'
     })
   },
-   created() {
-      this.open = this.opened
-   },
+  created () {
+    this.$watch('open', open => {
+      this.$bindAsObject('problem_detail', db.ref('problems/' + this.problem.level + '/data/' + this.problem.id))
+    });
+  },
   methods: {
     previewFiles() {
         this.file_name = this.$refs.myFiles.files[0].name
