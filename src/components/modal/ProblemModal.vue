@@ -1,6 +1,18 @@
 <template>
     <sui-modal class="problem-modal" v-model="open" size="standart">
-        <sui-modal-header>{{ problem_detail['title'] }}</sui-modal-header>
+        <sui-modal-header>
+            <div style="display:inline-block; width:100%; margin-bottom: -10px">
+            <div @click="previousProblem()" class="left font-smaller pointer">
+                <sui-icon name="arrow left" color="pink" /> ข้อก่อนหน้า
+            </div>
+            <div class="center">
+                {{ problem_detail['title'] }}
+            </div>
+            <div @click="nextProblem()" class="right font-smaller pointer" align="right">
+                ข้อต่อไป <sui-icon name="arrow right" color="pink" style="float:right" />
+            </div>
+            </div>
+        </sui-modal-header>
         <sui-modal-content image>
         <div v-if="problem_detail['image']" class="ui big image">
             <img :src="problem_detail['image']" style="margin-bottom: 20px">
@@ -26,41 +38,43 @@
         </sui-modal-description>
         </sui-modal-content>
         <sui-modal-actions style="text-align: center">
-            <sui-form v-if="upload_status === 0 || upload_again">
-                <sui-form-field class="relative">
-                    <input type="file" ref="myFiles" placeholder="First Name" class="file-hidden" @change="previewFiles">
-                    <input class="upload relative" type="text"  :placeholder="file_name" disabled>
-                    <sui-button color="pink" class="browse">
-                    Browse
+            <div class="actions" v-if="problem_detail['title'] !== 'Loading...'">
+                <sui-form v-if="upload_status === 0 || upload_again">
+                    <sui-form-field class="relative">
+                        <input type="file" ref="myFiles" placeholder="First Name" class="file-hidden" @change="previewFiles">
+                        <input class="upload relative" type="text"  :placeholder="file_name" disabled>
+                        <sui-button color="pink" class="browse">
+                        Browse
+                        </sui-button>
+                        <sui-button @click="uploadCode()" color="pink">
+                        Submit
+                        </sui-button>
+                    </sui-form-field>
+                </sui-form>
+                <br v-if="upload_again">
+                <div v-if="upload_status === 1 || (upload_status === 1 && upload_again)">
+                    <span v-if="upload_status === 1 || upload_again">
+                        status : <sui-icon name="notched circle big" color="pink" loading /> รอการตรวจคำตอบ...
+                    </span>
+                    <br>
+                    <sui-button v-if="upload_status === 1 && !upload_again" @click="upload_again = !upload_again" class="font-smaller" size="small" color="pink" style="margin-top: 20px;">
+                    ส่งคำตอบอีกครั้ง
                     </sui-button>
-                    <sui-button @click="uploadCode()" color="pink">
-                    Submit
+                </div>
+                <div v-if="upload_status === 2">
+                    status : <sui-icon name="check big" color="green" /> <span class="bold">Correct...</span>
+                    <br><br>
+                    + 100 point
+                </div>
+                <div v-if="upload_status === 3 || (upload_status === 3 && upload_again)">
+                    <span v-if="upload_status === 3 || upload_again">
+                        status : <sui-icon name="times big" color="red" /> Incorrect...
+                    </span>
+                    <br>
+                    <sui-button v-if="upload_status === 3 && !upload_again" @click="upload_again = !upload_again" class="font-smaller" size="small" color="pink" style="margin-top: 20px;">
+                    ส่งคำตอบอีกครั้ง
                     </sui-button>
-                </sui-form-field>
-            </sui-form>
-            <br v-if="upload_again">
-            <div v-if="upload_status === 1 || (upload_status === 1 && upload_again)">
-                <span v-if="upload_status === 1 || upload_again">
-                    status : <sui-icon name="notched circle big" color="pink" loading /> รอการตรวจคำตอบ...
-                </span>
-                <br>
-                <sui-button v-if="upload_status === 1 && !upload_again" @click="upload_again = !upload_again" class="font-smaller" size="small" color="pink" style="margin-top: 20px;">
-                ส่งคำตอบอีกครั้ง
-                </sui-button>
-            </div>
-            <div v-if="upload_status === 2">
-                status : <sui-icon name="check big" color="green" /> <span class="bold">Correct...</span>
-                <br><br>
-                + 100 point
-            </div>
-            <div v-if="upload_status === 3 || (upload_status === 3 && upload_again)">
-                <span v-if="upload_status === 3 || upload_again">
-                    status : <sui-icon name="times big" color="red" /> Incorrect...
-                </span>
-                <br>
-                <sui-button v-if="upload_status === 3 && !upload_again" @click="upload_again = !upload_again" class="font-smaller" size="small" color="pink" style="margin-top: 20px;">
-                ส่งคำตอบอีกครั้ง
-                </sui-button>
+                </div>
             </div>
         </sui-modal-actions>
     </sui-modal>
@@ -103,12 +117,36 @@ export default {
   },
   created () {
     this.$watch('open', open => {
-      this.$bindAsObject('problem_detail', db.ref('problems/' + this.problem.level + '/data/' + this.problem.id))
+      if(open)
+        this.$bindAsObject('problem_detail', db.ref('problems/' + this.problem.level + '/data/' + this.problem.id))
+    });
+    this.$watch('problem.id', id => {
+        this.$bindAsObject('problem_detail', db.ref('problems/' + this.problem.level + '/data/' + this.problem.id))
     });
   },
   methods: {
     previewFiles() {
         this.file_name = this.$refs.myFiles.files[0].name
+    },
+    nextProblem() {
+        const offset = 4;
+        let level = this.problem.level;
+        let id = this.problem.id + 1;
+        if(id >= offset){
+            level++;
+            id = id - offset;
+        }
+        this.$store.dispatch('setProblem', { level: level, id: id })
+    },
+    previousProblem() {
+        const offset = 4;
+        let level = this.problem.level;
+        let id = this.problem.id - 1;
+        if(id < 0) {
+            level--;
+            id = id + offset;
+        }
+        this.$store.dispatch('setProblem', { level: level, id: id })
     }
   }
 }
@@ -129,6 +167,22 @@ export default {
     .ui.modal>.actions {
         padding: 1rem !important;
     }
+}
+
+.left {
+    float: left;
+    width: 20%;
+}
+
+.center {
+    width: 60%;
+    float: left;
+    word-break: break-word;
+}
+
+.right {
+    float: left;
+    width: 20%;
 }
 
 .upload {

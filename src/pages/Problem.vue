@@ -42,9 +42,7 @@ export default {
   margin-bottom: 20px !important;
 }
 
-.card-margin:nth-last-child(2),  .card-margin:nth-last-child(1){
-  margin-bottom: 5px !important;
-}
+
 
 
 </style>
