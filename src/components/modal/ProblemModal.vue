@@ -89,7 +89,7 @@ export default {
   computed: {
     open: {
         get: function () {
-          return this.opened
+          return this.opened && this.type === 'problem'
         },
         set: function () {
           this.$store.dispatch('setModalToggle')
@@ -97,6 +97,7 @@ export default {
     },
     ...mapGetters({
       opened: 'getModalStatus',
+      type: 'getModalType',
       problem: 'getProblem'
     })
   },
@@ -133,7 +134,7 @@ export default {
 .upload {
     width: 400px !important;
     margin: 0 10px !important;
-    border-color: #888 !important;
+    border-color: #555 !important;
 }
 
 .browse {
