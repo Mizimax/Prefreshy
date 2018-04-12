@@ -141,6 +141,10 @@ body {
   max-width: 1024px;
 }
 
+.center {
+  text-align: center !important;
+}
+
 @media (max-width: 1100px) {
   .container {
     margin: 0 20px;
@@ -154,6 +158,10 @@ body {
 .myCard {
   width: 100% !important;
   padding: 20px !important;
+}
+
+.ui.modal {
+  max-height: 100%;
 }
 
 </style>

@@ -2,14 +2,20 @@
   <div class="hello">
     <nav id="Menu">
         <sui-container>
+            <div id="nav-icon3">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <ul class="relative">
-                <router-link to="/" exact>
+                <router-link to="/" class="menu" exact>
                     <li>Home</li>
                 </router-link>
-                <router-link to="/problems">
+                <router-link to="/problems" class="menu">
                     <li>Problem</li>
                 </router-link>
-                <router-link to="/submissions">
+                <router-link to="/submissions" class="menu">
                     <li>Submission</li>
                 </router-link>
                 <li class="center">Prefreshy</li>
@@ -74,6 +80,7 @@ export default {
     color: #c58ec3;
     padding: 6px 15px;
     margin-top: 10px;
+    margin-right: 5px;
     background: #fff;
     border-radius: 20px;
 }
@@ -117,6 +124,92 @@ export default {
     width: 100%;
 }
 
+@media (max-width: 665px) {
+    #nav-icon3 {
+        display: block !important;
+    }
+    .menu {
+        display: none !important;
+    }
+}
+
+#nav-icon3 {
+  width: 60px;
+  height: 50px;
+  margin: 0 auto;
+  position: relative;
+  float: left;
+  display: none;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .5s ease-in-out;
+  -moz-transition: .5s ease-in-out;
+  -o-transition: .5s ease-in-out;
+  transition: .5s ease-in-out;
+  cursor: pointer;
+}
+
+#nav-icon3 span {
+  display: block;
+  position: absolute;
+  height: 4px;
+  width: 26px;
+  background: white;
+  opacity: 1;
+  left: 20%;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transition: .25s ease-in-out;
+  -moz-transition: .25s ease-in-out;
+  -o-transition: .25s ease-in-out;
+  transition: .25s ease-in-out;
+}
+
+/* Icon 3 */
+
+#nav-icon3 span:nth-child(1) {
+  top: 17px;
+}
+
+#nav-icon3 span:nth-child(2),#nav-icon3 span:nth-child(3) {
+  top: 24px;
+}
+
+#nav-icon3 span:nth-child(4) {
+  top: 31px;
+}
+
+#nav-icon3.open span:nth-child(1) {
+  top: 24px;
+  width: 0%;
+  left: 50%;
+}
+
+#nav-icon3.open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 26px;
+}
+
+#nav-icon3.open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  width: 26px;
+}
+
+#nav-icon3.open span:nth-child(4) {
+  top: 38px;
+  width: 0%;
+  left: 50%;
+}
 
 
 </style>
