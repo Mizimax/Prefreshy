@@ -1,5 +1,5 @@
 <template>
-  <div id="app" v-bind:class="{ scroll: getModalStatus }">
+  <div id="app">
     <Navbar></Navbar>
     <Sidebar></Sidebar>
     <router-view></router-view>
