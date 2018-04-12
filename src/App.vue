@@ -1,17 +1,20 @@
 <template>
-  <div id="app">
+  <div id="app" v-bind:class="{ scroll: getModalStatus }">
     <Navbar></Navbar>
     <Sidebar></Sidebar>
     <router-view></router-view>
     <Modal></Modal>
+    <Footer></Footer>
     <vue-progress-bar></vue-progress-bar>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 import Navbar from './components/Navbar'
 import Sidebar from './components/Sidebar'
+import Footer from './components/Footer'
 import Modal from './components/modal/Modal'
 
 export default {
@@ -19,14 +22,19 @@ export default {
   components: {
     Navbar,
     Sidebar,
+    Footer,
     Modal
   },
-  data () {
-    return {
-
-    }
+  computed: {
+    ...mapGetters([
+      'getModalStatus'
+    ])
   },
   created () {
+    //hidden scroll when modal open
+    this.$watch('getModalStatus', open => {   
+      document.body.style.overflowY = (open) ? 'hidden': 'auto';
+    })
     //  [App.vue specific] When App.vue is first loaded start the progress bar
     this.$Progress.start()
     //  hook the progress bar to start before we move router-view
@@ -57,7 +65,17 @@ export default {
 body {
   margin: 0;
   padding: 0;
+  height:100%;
   background-color: #D5D8CC;
+}
+
+#app {
+  position: relative;
+  min-height: 100%;
+}
+
+.scroll {
+  overflow-y: hidden;
 }
 
 .bg.primary a {
