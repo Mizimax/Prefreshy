@@ -34,6 +34,7 @@ export default {
     //hidden scroll when modal open
     this.$watch('getModalStatus', open => {   
       document.body.style.overflowY = (open) ? 'hidden': 'auto';
+      document.body.style.marginRight = (open) ? '.5em': '0';
     })
     //  [App.vue specific] When App.vue is first loaded start the progress bar
     this.$Progress.start()
@@ -67,6 +68,18 @@ body {
   padding: 0;
   height:100%;
   background-color: #D5D8CC;
+}
+
+::-webkit-scrollbar {
+    width: .5em;
+}
+ 
+::-webkit-scrollbar-track {
+    
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: rgb(245, 70, 99);
 }
 
 #app {
@@ -162,6 +175,10 @@ body {
 
 .ui.modal {
   max-height: 100%;
+}
+
+.ui.pink.button:not(.inverted), .ui.pink.buttons .button {
+  background-color: rgb(245, 70, 99) !important;
 }
 
 </style>
