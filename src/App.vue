@@ -33,8 +33,15 @@ export default {
   created () {
     //hidden scroll when modal open
     this.$watch('getModalStatus', open => {   
-      document.body.style.overflowY = (open) ? 'hidden': 'auto';
-      document.body.style.marginRight = (open) ? '.5em': '0';
+      if(open){
+        document.body.style.overflowY = 'hidden';
+        document.body.style.marginRight = '.5em';
+      }
+      else {
+        document.body.style.overflowY = 'auto';
+        document.body.style.marginRight = '0';
+        
+      }
     })
     //  [App.vue specific] When App.vue is first loaded start the progress bar
     this.$Progress.start()

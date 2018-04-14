@@ -1,18 +1,23 @@
 <template>
-  <div>
-    <div class="name">Student : {{ name }}</div>
-    <div class="status" style="margin-top: 7px;">
+  <div align="center">
+    <div class="name left" align="left">
+      Student : {{ name }}<br>
       Status : {{ status[problem_status] }}
-      <sui-button v-if="problem_status !== 0" class="font-smaller" size="small" color="pink">
-        Comment
+    </div>
+    <div class="right">
+      <sui-button class="font-smaller" size="small" color="pink">
+          ตรวจ<span v-if="problem_status !== 0">อีกครั้ง</span>
       </sui-button>
     </div>
-    <sui-button class="font-smaller" size="small" color="pink" style="margin: 10px">
-        Download Code
-    </sui-button>
-    <sui-button class="font-smaller" size="small" color="pink" style="margin-top: 10px;">
-        ตรวจ<span v-if="problem_status !== 0">อีกครั้ง</span>
-    </sui-button>
+      <sui-button class="font-smaller" size="small" color="blue">
+          Download Code
+      </sui-button>
+      <sui-button v-if="problem_status !== 0" @click="showCommentModal()" class="font-smaller" size="small" color="green">
+        Comment
+      </sui-button>
+      <sui-button class="font-smaller" size="small" color="orange">
+          คุยกับน้อง
+      </sui-button>
   </div>
 </template>
 
@@ -27,6 +32,17 @@ export default {
       status: ['ยังไม่ตรวจ', 'ผ่านการตรวจ', 'ไม่ผ่านการตรวจ']
     }
   },
+  methods: {
+    showCommentModal() {
+      this.$store.dispatch(
+        'setModalProblem', 
+        {
+          modal: { modal: 'modal2'},
+          type: { type: 'comment'}
+        }
+      )
+    }
+  }
 };
 
 </script>
@@ -34,8 +50,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.sidebar {
-  position: fixed;
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
 }
 
 

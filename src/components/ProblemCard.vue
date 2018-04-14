@@ -11,7 +11,7 @@
               {{ problem['title'] }}
             </div>
             <div class="right">
-              <sui-button v-if="problemStatus === 0" @click="setModalProblem({ type: {type: 'problem'} , problem: { level: levelIndex, id: index } })" color="pink" style="font-size: 13px" inverted>
+              <sui-button v-if="problemStatus === 0" @click="setModalProblem({ type: {type: 'problem'} , problem: { level: levelIndex, id: index }, modal: { modal:'modal'} })" color="pink" style="font-size: 13px" inverted>
                 <sui-icon name="hand point left" />
                 Practice
               </sui-button>

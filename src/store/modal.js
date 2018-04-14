@@ -1,42 +1,51 @@
 const state = {
+  modal : {
     open: false,
     modalType: '',
     problem: {
         level: 0,
         id: 0
     }
+  },
+  modal2 : {
+    open: false,
+    modalType: ''
+  }
 }
 
 const mutations = {
 
-    setModalToggle (state) {
-      state.open = !state.open
+    setModalToggle (state, payload) {
+      state[payload.modal].open = !state[payload.modal].open
     },
     setModalType (state, payload) {
-      state.modalType = payload.type
+      state[payload.modal].modalType = payload.type
     },
     setProblem (state, payload) {
-      state.problem.id = payload.id
-      state.problem.level = payload.level
+      state.modal.problem.id = payload.id
+      state.modal.problem.level = payload.level
     }
 }
 
 const actions = {
-    setModalToggle: ({ commit }) => commit('setModalToggle'),
+    setModalToggle: ({ commit }, payload) => commit('setModalToggle', payload),
     setModalType: ({ commit }, payload) => commit('setModalType', payload),
     setProblem: ({ commit }, payload) => commit('setProblem', payload),
 
     setModalProblem: ({ dispatch, commit }, payload) => {
-        dispatch('setModalToggle')
-        dispatch('setModalType', payload.type)
-        commit('setProblem', payload.problem)
+        dispatch('setModalToggle', payload.modal)
+        dispatch('setModalType', { ...payload.type, ...payload.modal })
+        if(payload.modal.modal === 'modal')
+          commit('setProblem', payload.problem)
     }
 }
 
 const getters = {
-    getModalStatus: state => state.open,
-    getModalType: state => state.modalType,
-    getProblem: state => state.problem
+    getModalStatus: (state, payload) => state.modal.open,
+    getModalType: (state, payload) => state.modal.modalType,
+    getModal2Status: (state, payload) => state.modal2.open,
+    getModal2Type: (state, payload) => state.modal2.modalType,
+    getProblem: (state, payload) => state.modal.problem
 }
 
 export default {

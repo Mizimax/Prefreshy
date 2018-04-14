@@ -1,5 +1,5 @@
 <template>
-    <sui-modal class="problem-modal" v-model="open" size="standart">
+    <sui-modal class="problem-modal" v-model="open" size="standart" :closeIcon="true">
         <sui-modal-header>
             <div style="display:inline-block; width:100%; margin-bottom: -10px">
             <div @click="previousProblem()" class="left font-smaller pointer">
@@ -37,10 +37,10 @@
             </div>
         </sui-modal-description>
         </sui-modal-content>
-        <sui-modal-actions style="text-align: center">
+        <sui-modal-actions>
             <div class="actions" v-if="problem_detail['title'] !== 'Loading...'">
-                <StudentProblemStatus />
-                <EvaluatorProblemStatus />
+                <StudentProblemStatus v-if="role === 'student'" />
+                <EvaluatorProblemStatus v-if="role === 'evaluator'" />
             </div>
         </sui-modal-actions>
     </sui-modal>
@@ -60,6 +60,7 @@ export default {
   },
   data() {
     return {
+        role: 'student',
         problem_detail: {
             title: "Loading...",
             description: "",
@@ -75,7 +76,7 @@ export default {
           return this.opened && this.type === 'problem'
         },
         set: function () {
-          this.$store.dispatch('setModalToggle')
+          this.$store.dispatch('setModalToggle', {modal:'modal'})
         }
     },
     ...mapGetters({
