@@ -104,7 +104,7 @@ export default {
           id = id - offset;
         }
         if(level === offset) {
-          this.$store.dispatch('setModalToggle');
+          this.$store.dispatch('setModalToggle', {modal:'modal'});
           return 0;
         }
         this.$store.dispatch('setProblem', { level: level, id: id })
@@ -118,7 +118,7 @@ export default {
             id = id + offset;
         }
         if(level === offset-offset-1) {
-          this.$store.dispatch('setModalToggle');
+          this.$store.dispatch('setModalToggle', {modal:'modal'});
           return 0;
         }
         this.$store.dispatch('setProblem', { level: level, id: id })

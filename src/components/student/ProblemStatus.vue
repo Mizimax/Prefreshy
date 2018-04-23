@@ -65,7 +65,7 @@ export default {
   name: "StudentProblemStatus",
   data() {
     return {
-      upload_status: 3,
+      upload_status: 0,
       upload_again: false,
       file_name: 'คลิกเพื่อส่งไฟล์คำตอบ'
     }
